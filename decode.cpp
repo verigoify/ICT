@@ -34,7 +34,7 @@ char dCrypt (char ch){
 }
 
 int main(int argc, char** argv) {
-
+	ofstream decodeOutput;
 	Mat image = imread(argv[1]);
 	char msgChar = 0;
 	int bitCount = 0;
@@ -42,6 +42,7 @@ int main(int argc, char** argv) {
 	int yDimMax = image.cols;
 	int xDim=0; 
 	int yDim=0;
+	decodeOutput.open("decodeOutput.txt");
 
 	while(xDim<xDimMax && loopFlag == false) {
 		while(yDim<yDimMax && loopFlag == false) {
@@ -61,7 +62,7 @@ int main(int argc, char** argv) {
 
 					bitCount = 0;
 					dCrypt(msgChar);
-					cout << dCryptChar;
+					decodeOutput << dCryptChar;
 					msgChar = 0;
 				
 				default:
@@ -72,5 +73,6 @@ int main(int argc, char** argv) {
 		}
 	xDim++;
 	}
+	decodeOutput.close();
 	return 0;
 }
