@@ -1,8 +1,14 @@
 #include <iostream>
+<<<<<<< HEAD
 #include <fstream>
 #include <cstdlib>
 #include <ctime>
 #include <arpa/inet.h>
+=======
+
+#include <cstdlib>
+#include <ctime>
+>>>>>>> 2b94839796891daa5c6525f4e9e80a37967f6db5
 
 #include <opencv2/opencv.hpp>
 #include <opencv2/highgui.hpp>
@@ -17,6 +23,7 @@ char msgChar;
 char dCryptChar;
 string storeChars;
 
+<<<<<<< HEAD
 struct metaDataStruct {
     int width;
     int height;
@@ -55,6 +62,8 @@ bool getPngMeta(const char *fileName, metaDataStruct &is) {
     return true;
 }
 
+=======
+>>>>>>> 2b94839796891daa5c6525f4e9e80a37967f6db5
 bool bitVal(char msgChar, int bitPos) {
 	msgChar = msgChar >> bitPos;
 	if(msgChar & 1){
@@ -73,15 +82,20 @@ char dCrypt (char ch){
 }
 
 int main(int argc, char** argv) {
+<<<<<<< HEAD
 	metaDataStruct metaData;
 	getPngMeta(argv[1], metaData);
 	ofstream outFile;
 	outFile.open("decodeOutput.txt");
+=======
+	ofstream decodeOutput;
+>>>>>>> 2b94839796891daa5c6525f4e9e80a37967f6db5
 	Mat image = imread(argv[1]);
 	char msgChar = 0;
 	int bitCount = 0;
 	int xDimMax = image.rows;
 	int yDimMax = image.cols;
+<<<<<<< HEAD
 	int zDimMax = 0;
 	int xDim=0; 
 	int yDim=0;
@@ -98,6 +112,15 @@ int main(int argc, char** argv) {
 	while(xDim<xDimMax && loopFlag == false) {
 		while(yDim<yDimMax && loopFlag == false) {
 			for(int zDim=0; zDim < zDimMax; zDim++) {
+=======
+	int xDim=0; 
+	int yDim=0;
+	decodeOutput.open("decodeOutput.txt");
+
+	while(xDim<xDimMax && loopFlag == false) {
+		while(yDim<yDimMax && loopFlag == false) {
+			for(int zDim=0; zDim < 3; zDim++) {
+>>>>>>> 2b94839796891daa5c6525f4e9e80a37967f6db5
 				Vec3b operatingPixel = image.at<Vec3b>(Point(xDim,yDim));
 
 				if(bitVal(operatingPixel.val[zDim],0))
@@ -113,7 +136,11 @@ int main(int argc, char** argv) {
 
 					bitCount = 0;
 					dCrypt(msgChar);
+<<<<<<< HEAD
 					outFile << dCryptChar;
+=======
+					decodeOutput << dCryptChar;
+>>>>>>> 2b94839796891daa5c6525f4e9e80a37967f6db5
 					msgChar = 0;
 				
 				default:
@@ -124,6 +151,10 @@ int main(int argc, char** argv) {
 		}
 	xDim++;
 	}
+<<<<<<< HEAD
 	outFile.close();
+=======
+	decodeOutput.close();
+>>>>>>> 2b94839796891daa5c6525f4e9e80a37967f6db5
 	return 0;
 }

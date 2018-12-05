@@ -1,6 +1,9 @@
 #include <iostream>
 #include <fstream>
+<<<<<<< HEAD
 #include <arpa/inet.h>
+=======
+>>>>>>> 2b94839796891daa5c6525f4e9e80a37967f6db5
 
 #include <cstdlib>
 #include <ctime>
@@ -16,6 +19,7 @@ bool loopFlag = false;
 char msgChar;
 char getChar;
 
+<<<<<<< HEAD
 struct metaDataStruct {
     int width;
     int height;
@@ -54,6 +58,8 @@ bool getPngMeta(const char *fileName, metaDataStruct &is) {
     return true;
 }
 
+=======
+>>>>>>> 2b94839796891daa5c6525f4e9e80a37967f6db5
 bool bitVal(char msgChar, int bitPos) {
 	msgChar = msgChar >> bitPos;
 	if(msgChar & 1){
@@ -72,9 +78,15 @@ char crypt (char ch){
 }
 
 int main(int argc, char** argv) {
+<<<<<<< HEAD
 	metaDataStruct metaData;
 	Mat image = imread(argv[1]);
 	getPngMeta(argv[1], metaData);
+=======
+
+	Mat image = imread(argv[1]);
+
+>>>>>>> 2b94839796891daa5c6525f4e9e80a37967f6db5
 	ifstream file(argv[2]);
 
 
@@ -86,6 +98,7 @@ int main(int argc, char** argv) {
 
 	int xDimMax = image.rows;
 	int yDimMax = image.cols;
+<<<<<<< HEAD
 	int zDimMax = 0;
 	int xDim=0; 
 	int yDim=0;
@@ -102,6 +115,15 @@ int main(int argc, char** argv) {
 	while(xDim<xDimMax && loopFlag == false) {
 		while(yDim<yDimMax && loopFlag == false) {
 			for(int zDim=0; zDim < zDimMax; zDim++) {
+=======
+	int xDim=0; 
+	int yDim=0;
+
+
+	while(xDim<xDimMax && loopFlag == false) {
+		while(yDim<yDimMax && loopFlag == false) {
+			for(int zDim=0; zDim < 3; zDim++) {
+>>>>>>> 2b94839796891daa5c6525f4e9e80a37967f6db5
 				Vec3b operatingPixel = image.at<Vec3b>(Point(xDim,yDim));
 				if(bitVal(msgChar,7-bitCount))
 					operatingPixel.val[zDim] |= 1;
